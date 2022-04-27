@@ -62,6 +62,8 @@ class Yiban:
         self.password = password
         self.session = requests.session()
         self.name = ""
+        self.TaskId = ""
+        self.WFId = ""
         self.HEADERS = {"Origin": "'https://m.yiban.cn", 'AppVersion': '5.0.1', "User-Agent": "YiBan/5.0.1"}
         self.COOKIES = {"csrf_token": self.CSRF}
 
@@ -153,10 +155,16 @@ class Yiban:
             "https://api.uyiban.com/officeTask/client/index/detail?TaskId=" + taskId + "&CSRF=" + self.CSRF,
             cookies=self.COOKIES)
         self.WFId = response['data']['WFId']
+        self.TaskId = taskId
         self.Title = response['data']["Title"]
         self.PubOrgName = response["data"]["PubOrgName"]
         self.PubPersonName = response["data"]["PubPersonName"]
         return response
+
+    def get_upload_data(self, initiateId):
+        return self.request(
+            "https://api.uyiban.com/workFlow/c/work/show/view/%s?CSRF=%s" % (initiateId, self.CSRF),
+            cookies=self.COOKIES)
 
     def getFormapi(self) -> json:
         """
@@ -197,6 +205,11 @@ class Yiban:
             "WFId": self.WFId
         }
         params = json.dumps(params, ensure_ascii=False)
+        # formtest = {'data': {'WFName': '学生身体健康状况采集', 'Process': {'WFId': 'bce5f38f1140eb08e11885e667038f25', 'Flow': [], 'CCTrigger': 'success'}, 'Approved': [], 'HasEditionAccess': False, 'HasInitiateLog': False, 'Initiate': {'Id': '3643cd685ae80af601848cddfde96c64', 'SerialNo': '20220426020141007963', 'UniversityId': '1a388b1e3eb6620a26622e46a6d7b7ac', 'PersonId': 'eddd66b2f86c12d1cd4685db1a66b9df', 'PersonInfo': {'College': '研究生院', 'Profession': '电子信息工程学院', 'Specialty': '电子信息', 'Class': '2021级', 'Grade': 2021, 'Campus': None, 'EducationLevel': 3, 'StudyYear': '3.0', 'Number': '212021085400028', 'Name': '王攀', 'Gender': 1, 'PersonType': 'student', 'Mobile': None}, 'WFId': 'bce5f38f1140eb08e11885e667038f25', 'ProcessId': '961f90b982fcdb281d2cc283d2822131', 'FormDataJson': [{'id': '147371930756b00991e7bb9624f0d137', 'label': '今日你的体温多少？', 'value': '37.2℃及以下', 'component': 'Radio'}, {'id': 'e1237ee513e84575e4cba1b7f009b5f0', 'label': '今日你的身体状况是？', 'value': '健康', 'component': 'Radio'}, {'id': 'ef9f971b44c6a67b9dd5263a9aa57cbe', 'label': '近14天你或你共同居住的人是否有疫情中高风险区域人员接触史？', 'value': '否', 'component': 'Radio'}, {'id': 'a669262cc262cc42309afed5b456d845', 'label': '你或你的共同居住人目前是否正被医学隔离？', 'value': '否', 'component': 'Radio'}, {'id': '9289a17bd856f28e6f6f7bc8f941722b', 'label': '本人是否承诺以上所填信息全部属实。准确，不存在任何隐瞒与不实', 'value': '是', 'component': 'Radio'}, {'id': '02df1388a840d9224bdc00f35cdabce6', 'label': '获取定位', 'value': {'time': '2022-04-26 02:01', 'longitude': 106.069485, 'latitude': 30.812159, 'address': '四川省南充市顺庆区风华路2号靠近中国电信(西华师范大学店)'}, 'component': 'AutoTakePosition'}], 'ExtendDataJson': {'TaskId': '6212ae117ab9d4d975aebfce48c3b3ee', 'title': '任务信息', 'content': [{'label': '任务名称', 'value': '4月25日——4月26日健康打卡'}, {'label': '发布机构', 'value': '2021级'}, {'label': '发布人', 'value': '魏书君'}]}, 'WorkNode': 0, 'State': 2, 'StateTime': '02:01', 'CreateTime': 1650909701}}}
+        # formtest['data']['Initiate']['ExtendDataJson']['TaskId'] = self.TaskId
+        # params = json.dumps(formtest, ensure_ascii=False)
+        
+
         return self.request(
             "https://api.uyiban.com/workFlow/c/my/apply/?CSRF=%s" % (self.CSRF), method="post",
             params={'Str': aes_encrypt(self.AES_KEY, self.AES_IV, params)},

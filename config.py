@@ -32,8 +32,8 @@ import random
 # 管理员设置
 admin = {
     "mail": {
-        "sendMail": "",     # 发送人邮箱
-        "authCode": "",     # 发送人邮箱授权码
+        "sendMail": "1573049371@qq.com",     # 发送人邮箱
+        "authCode": "jhrjndjbpdomjfbe",     # 发送人邮箱授权码
         "smtpServer": "smtp.qq.com",
         "port": "465"
     }
@@ -42,9 +42,9 @@ admin = {
 # 账号设置
 account = [
     {
-        "mobile": "",
-        "password": "",
-        "mail": "",
+        "mobile": "17683231030",
+        "password": "patrick129",
+        "mail": "1573049371@qq.com",
         "pushToken": "",
         "notice": ""
     }
@@ -82,6 +82,27 @@ tasks = [
         "e6a93f2db5740f48d6d1a6f99133ad67":"好"
     }
 ]
+
+xihua = {
+
+    'Id': 'bce5f38f1140eb08e11885e667038f25',
+    'WFName': '学生身体健康状况采集',
+    'Form':[{
+    '147371930756b00991e7bb9624f0d137': '37.2℃及以下',
+    'e1237ee513e84575e4cba1b7f009b5f0': '健康',
+    'ef9f971b44c6a67b9dd5263a9aa57cbe': '否',
+    'a669262cc262cc42309afed5b456d845': '否',
+    '9289a17bd856f28e6f6f7bc8f941722b': '是',
+    '02df1388a840d9224bdc00f35cdabce6': {'time': '2022-04-26 02:01', 'longitude': 106.069485, 'latitude': 30.812159, 'address': '四川省南充市顺庆区风华路2号靠近中国电信(西华师范大学店)'}}]
+}
+
+xihua2 = {
+    '147371930756b00991e7bb9624f0d137': '37.2℃及以下',
+    'e1237ee513e84575e4cba1b7f009b5f0': '健康',
+    'ef9f971b44c6a67b9dd5263a9aa57cbe': '否',
+    'a669262cc262cc42309afed5b456d845': '否',
+    '9289a17bd856f28e6f6f7bc8f941722b': '是',
+    '02df1388a840d9224bdc00f35cdabce6': {'time': '2022-04-26 02:01', 'longitude': 106.069485, 'latitude': 30.812159, 'address': '四川省南充市顺庆区风华路2号靠近中国电信(西华师范大学店)'}}
 
 # 地址
 address = '{"Reason":"","AttachmentFileName":"","LngLat":"102.449018,24.875743","Address":"xxx省 xxx市 xxx学校 "}'
