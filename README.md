@@ -67,6 +67,8 @@ https://apecodewx.gitee.io/sixuetang/how
 
 python3.8
 
+**注意安装`requirement.txt`里面的包**
+
 ### 运行方式
 
 ```shell
