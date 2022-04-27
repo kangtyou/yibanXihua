@@ -32,8 +32,8 @@ import random
 # 管理员设置
 admin = {
     "mail": {
-        "sendMail": "1573049371@qq.com",     # 发送人邮箱
-        "authCode": "jhrjndjbpdomjfbe",     # 发送人邮箱授权码
+        "sendMail": "",     # 发送人邮箱
+        "authCode": "",     # 发送人邮箱授权码
         "smtpServer": "smtp.qq.com",
         "port": "465"
     }
@@ -42,9 +42,9 @@ admin = {
 # 账号设置
 account = [
     {
-        "mobile": "17683231030",
-        "password": "patrick129",
-        "mail": "1573049371@qq.com",
+        "mobile": "",
+        "password": "",
+        "mail": "",
         "pushToken": "",
         "notice": ""
     }
